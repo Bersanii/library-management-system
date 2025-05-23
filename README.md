@@ -19,3 +19,6 @@ Depencias npm geralmente são instaladas localmente para cada projeto, a lista d
 Para instalar as dependências desse projeto:
  - Acessar `library-api` e executar `npm install` 
  - Acessar `library-manager` e executar `npm install`
+
+## Referências
+Auth: https://medium.com/@sustiono19/how-to-create-a-protected-route-in-react-with-react-router-dom-v7-6680dae765fb
