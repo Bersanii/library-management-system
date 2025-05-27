@@ -1,16 +1,33 @@
 import { Request, Response } from 'express';
+import { Usuario } from '../models';
+import { TiposUsuario } from '../models/usuario';
 
-export const getUsers = (_req: Request, res: Response) => {
-  res.json([
-    { id: 1, name: 'Alice' },
-    { id: 2, name: 'Bob' }
-  ]);
+export const getUsers = async (_req: Request, res: Response) => {
+  try {
+    const users = await Usuario.findAll();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch users' });
+  }
 };
 
-export const createUser = (req: Request, res: Response) => {
-  const user = req.body;
-  res.status(201).json({
-    message: 'User created',
-    user
-  });
+export const createUser = async (req: Request, res: Response) => {
+  try {
+    const { cpf, nome, endereco, dataNascimento, sexo, contato } = req.body;
+    const user = await Usuario.create({ 
+      cpf,
+      nome,
+      endereco,
+      dataNascimento: new Date(1990, 1, 1),
+      sexo,
+      contato,
+      tipo: TiposUsuario.Adm
+    });
+    res.status(201).json({
+      message: 'User created',
+      user
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to create user' });
+  }
 };
