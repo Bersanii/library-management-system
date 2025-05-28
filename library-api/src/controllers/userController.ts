@@ -19,9 +19,9 @@ export const createUser = async (req: Request, res: Response) => {
       nome,
       endereco,
       dataNascimento: new Date(1990, 1, 1),
-      sexo,
       contato,
-      tipo: TiposUsuario.Adm
+      tipo: TiposUsuario.Adm,
+      senha: '123'
     });
     res.status(201).json({
       message: 'User created',

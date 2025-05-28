@@ -19,9 +19,9 @@ Usuario.afterSync(async () => {
       nome: 'Admin',
       endereco: 'Central',
       dataNascimento: new Date('1970-01-01'),
-      sexo: 'M',
       contato: 'admin@library.com',
-      tipo: TiposUsuario.Adm
+      tipo: TiposUsuario.Adm,
+      senha: '123'
     });
   }
 })

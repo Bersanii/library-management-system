@@ -14,9 +14,9 @@ export class Usuario extends Model<
   declare nome: string;
   declare endereco: string;
   declare dataNascimento: Date;
-  declare sexo?: string;
   declare contato?: string;
   declare tipo: TiposUsuario;
+  declare senha: string;
 }
 
 export const UsuarioFactory = (sequelize: Sequelize) => {
@@ -29,9 +29,9 @@ export const UsuarioFactory = (sequelize: Sequelize) => {
       nome: DataTypes.STRING,
       endereco: DataTypes.STRING,
       dataNascimento: DataTypes.DATE,
-      sexo: DataTypes.STRING,
       contato: DataTypes.STRING,
-      tipo: DataTypes.STRING
+      tipo: DataTypes.STRING,
+      senha: DataTypes.STRING
     },
     {
       sequelize,
