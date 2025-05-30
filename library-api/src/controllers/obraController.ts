@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Op } from 'sequelize';
-import { Obra } from '../models';
+import { Obra, Exemplar } from '../models';
 
 export async function getObras(_req: Request, res: Response) {
   try {
@@ -37,7 +37,20 @@ export async function getObra(_req: Request, res: Response) {
         isbn
       }
     });
-    res.json(obra);
+
+    if(obra == null)
+      res.status(404);
+
+    const exemplares = await Exemplar.findAll({
+      where: {
+        isbn: obra?.isbn
+      }
+    })
+
+    res.json({
+      obra,
+      exemplares
+    });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao buscar obra' });
   }

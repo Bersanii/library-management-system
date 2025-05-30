@@ -8,7 +8,7 @@ export class Exemplar extends Model<
   declare tombo: string;
   declare dataAquisicao: Date;
   declare sessao: string;
-  declare status: string;
+  declare status: string; // disp | empr
   declare isbn: string;
 }
 

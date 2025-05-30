@@ -55,8 +55,8 @@ Exemplar.afterSync(async () => {
       return Array.from({ length: quantidadeExemplares }, (_, i) => ({
         tombo: `T${index + 1}-${i + 1}`,
         dataAquisicao: new Date(2022, 0, 1 + i),
-        sessao: ['Ficção', 'Drama', 'Suspense', 'Clássicos'][index % 4],
-        status: 'disponível',
+        sessao: ['A1-P3-5', 'A2-P1-8', 'B2-P8-2', 'C3-P1-5'][index % 4],
+        status: 'disp',
         isbn: obra.isbn
       }));
     });
