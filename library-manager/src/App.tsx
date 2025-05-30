@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
+import Obra from "./pages/Obra";
 import MainLayout from "./layouts/MainLayout";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           { path: "/", element: <Home /> },
+          { path: "/obra/:isbn", element: <Obra /> },  
           {
             element: <ProtectedRoute />,
             children: [

@@ -7,7 +7,6 @@ export class Exemplar extends Model<
 > {
   declare tombo: string;
   declare dataAquisicao: Date;
-  declare numeroPaginas: number;
   declare sessao: string;
   declare status: string;
   declare isbn: string;
@@ -21,7 +20,6 @@ export const ExemplarFactory = (sequelize: Sequelize) => {
         primaryKey: true
       },
       dataAquisicao: DataTypes.DATE,
-      numeroPaginas: DataTypes.INTEGER,
       sessao: DataTypes.STRING,
       status: DataTypes.STRING,
       isbn: {

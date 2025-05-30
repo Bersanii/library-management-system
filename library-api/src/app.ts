@@ -1,5 +1,6 @@
 import express from 'express';
-import { createUser, getUsers } from './controllers/userController';
+import { createUsuario, getUsuario } from './controllers/usuarioController';
+import { getObras, getObra } from './controllers/obraController';
 import { login } from './controllers/authController';
 import cors from 'cors';
 
@@ -8,10 +9,13 @@ const app = express();
 app.use(cors());
 
 app.use(express.json());
-app.post('/api/login', login)
-;
-app.post('/api/users', createUser);
-app.post('/api/users', createUser);
+app.post('/api/login', login);
+
+app.get('/api/usuario', getUsuario);
+app.post('/api/usuario', createUsuario);
+
+app.get('/api/getObras', getObras);
+app.get('/api/getObra/:isbn', getObra);
 
 
 export default app;

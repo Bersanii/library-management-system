@@ -31,7 +31,7 @@ const Cadastro = () => {
     };
 
     try{
-      const response = await fetch(`${API_URL}/users`, {
+      const response = await fetch(`${API_URL}/usuario`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

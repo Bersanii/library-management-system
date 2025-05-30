@@ -8,6 +8,9 @@ export class Obra extends Model<
   declare titulo: string;
   declare autor: string;
   declare editora: string;
+  declare paginas: number;
+  declare descricao?: string;
+  declare linkCapa?: string;
 }
 
 export const ObraFactory = (sequelize: Sequelize) => {
@@ -19,7 +22,16 @@ export const ObraFactory = (sequelize: Sequelize) => {
       },
       titulo: DataTypes.STRING,
       autor: DataTypes.STRING,
-      editora: DataTypes.STRING
+      editora: DataTypes.STRING,
+      paginas: DataTypes.INTEGER,
+      descricao: {
+        type: DataTypes.TEXT,
+        allowNull: true
+      },
+      linkCapa: {
+        type: DataTypes.STRING,
+        allowNull: true 
+      }
     },
     {
       sequelize,

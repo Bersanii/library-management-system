@@ -2,19 +2,19 @@ import { Request, Response } from 'express';
 import { Usuario } from '../models';
 import { TiposUsuario } from '../models/usuario';
 
-export const getUsers = async (_req: Request, res: Response) => {
+export async function getUsuario(_req: Request, res: Response) {
   try {
     const users = await Usuario.findAll();
     res.json(users);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch users' });
   }
-};
+}
 
-export const createUser = async (req: Request, res: Response) => {
+export async function createUsuario(req: Request, res: Response) {
   try {
     const { cpf, nome, endereco, dataNascimento, sexo, contato } = req.body;
-    const user = await Usuario.create({ 
+    const user = await Usuario.create({
       cpf,
       nome,
       endereco,
@@ -30,4 +30,4 @@ export const createUser = async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to create user' });
   }
-};
+}
