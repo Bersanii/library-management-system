@@ -1,5 +1,6 @@
+import { Button, Container } from "react-bootstrap";
 import { useAuth } from "../context/auth";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const Dashboard = () => {
   const { logout } = useAuth();
@@ -12,8 +13,13 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2>Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
+      <Container className="mt-3">
+
+        <Button as={Link as any} to="/" variant="primary" className="mb-4">
+          ← Voltar para o catálogo 
+        </Button>
+        <h2>Dashboard</h2>
+      </Container>
     </div>
   );
 };

@@ -19,9 +19,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const initializeAuth = () => {
-      const storedUser = JSON.parse(localStorage.getItem("user") || '');
+      const storedUser = localStorage.getItem("user");
       const storedLogged = localStorage.getItem("isLogged");
-      setUser(storedUser);
+      setUser(storedUser == null ? null : JSON.parse(storedUser));
       setisLogged(storedLogged == 'true') // isso está horroroso 
       setIsLoading(false);
     };
