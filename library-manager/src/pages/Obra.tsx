@@ -57,7 +57,7 @@ const BookDetails = () => {
 
   return (
     <Container className="mt-3">
-      <Button as={Link as any} to="/" variant="primary" className="mb-4">
+      <Button as={Link as any} to="/" variant="primary" className="text-white mb-4">
         ← Voltar
       </Button>
 

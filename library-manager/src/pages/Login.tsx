@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 
-import './Login.css';
-
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -28,11 +26,11 @@ const Login = () => {
 
   return (
     <Container fluid style={{height: '100vh'}} className="background d-flex">
-      <Card className="mx-auto my-auto">
+      <Card className="mx-auto my-auto rounded-4" style={{maxWidth: '30vw'}}>
         <Card.Body className="p-5">
           <h2 className="mb-3">Login</h2>
-          <p className="mb-3">Se ainda não tem uma conta, clique <Link to='/cadastro'>aqui</Link> para realizar seu cadastro.</p>
-
+          <p className="mb-3">Se você é um aluno e ainda não tem uma conta, clique <Link to='/cadastro' className="text-primary">aqui</Link> para realizar seu cadastro.</p>
+          
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="cpf">
               <Form.Label>Cpf</Form.Label>
@@ -45,13 +43,16 @@ const Login = () => {
             </Form.Group>
 
             <div className="d-flex">
-              <Button as={Link as any} to="/" variant="link">← Voltar</Button>
-              <Button variant="primary" type="submit" className="ms-auto">Login</Button>
+              <Button as={Link as any} to="/" variant="link" className="text-primary">← Voltar</Button>
+              <Button variant="primary" type="submit" className="ms-auto text-white"><i className="bi bi-box-arrow-in-right me-2"></i>Login</Button>
             </div>
           </Form>
+
+          <p className="text-secondary mt-3" style={{fontSize: '10pt'}}>Se você é um servidor, solicite suas credenciais ao administrador do sistema</p>
+
         </Card.Body>
       </Card>
-      <ToastContainer />
+      <ToastContainer position="bottom-center"/>
     </Container>
   );
 };

@@ -25,8 +25,8 @@ Para instalar as dependências desse projeto:
     - React
     - React Router
     - React-Bootstrap
-    - React-Spiners
     - React-Toastify
+    - Bootstrap icons
 
 ## Referências
 Auth: https://medium.com/@sustiono19/how-to-create-a-protected-route-in-react-with-react-router-dom-v7-6680dae765fb

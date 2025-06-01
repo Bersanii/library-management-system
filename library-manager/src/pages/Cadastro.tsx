@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router";
+import { Container, Form, Button, Row, Col, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 
@@ -28,9 +28,10 @@ const Cadastro = () => {
       senha,
       ra,
       curso,
+      tipo: 'alu'
     };
 
-    try{
+    try {
       const response = await fetch(`${API_URL}/usuario`, {
         method: "POST",
         headers: {
@@ -54,69 +55,71 @@ const Cadastro = () => {
   }
 
   return (
-    <Container>
-      <h1 className="mb-3">Efetue seu cadastro</h1>
+    <Container fluid style={{ height: '100vh' }} className="background d-flex">
+      <Card className="mx-auto my-auto rounded-4" style={{ maxWidth: '35vw' }}>
+        <Card.Body className="p-5">
+          <h2 className="mb-3">Cadastro</h2>
+          <p className="mb-3">Preencha seus dados para realizar o cadastro de aluno no sistema.</p>
 
-      <Form onSubmit={handleSubmit}>
-        <h5>Dados Pessoais</h5>
-        <hr className="mt-0" />
+          <Form onSubmit={handleSubmit}>
+            <h5>Dados Pessoais</h5>
+            <hr className="mt-0" />
 
-        <Row>
-          <Form.Group as={Col} className="mb-3" controlId="cpf">
-            <Form.Label>CPF</Form.Label>
-            <Form.Control type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
-          </Form.Group>
+            <Row>
+              <Form.Group as={Col} className="mb-3" controlId="cpf">
+                <Form.Label>CPF</Form.Label>
+                <Form.Control type="text" value={cpf} onChange={(e) => setCpf(e.target.value)} />
+              </Form.Group>
 
-          <Form.Group as={Col} className="mb-3" controlId="nome">
-            <Form.Label>Nome</Form.Label>
-            <Form.Control type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} className="mb-3" controlId="nome">
+                <Form.Label>Nome</Form.Label>
+                <Form.Control type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+              </Form.Group>
+            </Row>
 
-        <Form.Group className="mb-3" controlId="endereco">
-          <Form.Label>Endereço</Form.Label>
-          <Form.Control type="text" value={endereco} onChange={(e) => setEndereco(e.target.value)} />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="endereco">
+              <Form.Label>Endereço</Form.Label>
+              <Form.Control type="text" value={endereco} onChange={(e) => setEndereco(e.target.value)} />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="contato">
-          <Form.Label>Contato</Form.Label>
-          <Form.Control type="text" value={contato} onChange={(e) => setContato(e.target.value)} />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="contato">
+              <Form.Label>Contato</Form.Label>
+              <Form.Control type="text" value={contato} onChange={(e) => setContato(e.target.value)} />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="senha">
-          <Form.Label>Senha</Form.Label>
-          <Form.Control type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
-          <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text>
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="senha">
+              <Form.Label>Senha</Form.Label>
+              <Form.Control type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
+            </Form.Group>
 
-        <h5>Dados do aluno</h5>
-        <hr className="mt-0" />
+            <h5>Dados do aluno</h5>
+            <hr className="mt-0" />
 
-        <Row>
-          <Form.Group as={Col} className="mb-3" controlId="ra">
-            <Form.Label>RA</Form.Label>
-            <Form.Control type="text" value={ra} onChange={(e) => setRa(e.target.value)} />
-          </Form.Group>
+            <Row>
+              <Form.Group as={Col} className="mb-3" controlId="ra">
+                <Form.Label>RA</Form.Label>
+                <Form.Control type="text" value={ra} onChange={(e) => setRa(e.target.value)} />
+              </Form.Group>
 
-          <Form.Group as={Col} controlId="curso">
-            <Form.Label>Curso</Form.Label>
-            <Form.Select className="mb-3" value={curso} onChange={(e) => setCurso(e.target.value)}>
-              <option value="">Selecione o curso</option>
-              <option value="Ciências da Computação">Ciências da Computação</option>
-              <option value="Geografia">Geografia</option>
-              <option value="Geologia">Geologia</option>
-            </Form.Select>
-          </Form.Group>
-        </Row>
+              <Form.Group as={Col} controlId="curso">
+                <Form.Label>Curso</Form.Label>
+                <Form.Select className="mb-3" value={curso} onChange={(e) => setCurso(e.target.value)}>
+                  <option value="">Selecione o curso</option>
+                  <option value="Ciências da Computação">Ciências da Computação</option>
+                  <option value="Geografia">Geografia</option>
+                  <option value="Geologia">Geologia</option>
+                </Form.Select>
+              </Form.Group>
+            </Row>
 
-
-        <Button variant="primary" type="submit">
-          Cadastrar
-        </Button>
-      </Form>
-      <ToastContainer />
+            <div className="d-flex">
+              <Button as={Link as any} to="/" variant="link" className="text-primary">← Voltar</Button>
+              <Button variant="primary" type="submit" className="ms-auto text-white"><i className="bi bi-check me-2"></i>Cadastrar</Button>
+            </div>
+          </Form>
+        </Card.Body>
+      </Card>
+      <ToastContainer position="bottom-center"/>
     </Container>
   );
 };

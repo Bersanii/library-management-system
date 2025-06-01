@@ -69,7 +69,7 @@ const Home = () => {
                     <strong>Editora:</strong> {obra.editora} <br />
                     <strong>ISBN:</strong> {obra.isbn}
                   </Card.Text>
-                  <Button as={Link as any} to={`/obra/${obra.isbn}`} variant="primary" className="mt-auto">
+                  <Button as={Link as any} to={`/obra/${obra.isbn}`} variant="primary" className="mt-auto text-white">
                     Ver detalhes
                   </Button>
                 </Card.Body>

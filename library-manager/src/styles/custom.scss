@@ -2,8 +2,8 @@
 
 // Override default Bootstrap variables BEFORE importing Bootstrap
 $theme-colors: (
-  "primary": #ff6635,
-  "secondary": #50e3c2,
+  "primary": #ff4022,
+  "secondary": #5e5e5e,
   "success": #28a745,
   "danger": #ff4d4f,
   "warning": #ffc107,
@@ -12,5 +12,17 @@ $theme-colors: (
   "dark": #343a40,
 );
 
-// Import Bootstrap
+// // Import Bootstrap
 @import "bootstrap/scss/bootstrap";
+
+// Icons
+// @import 'bootstrap-icons/font/bootstrap-icons.css';
+
+.background {
+    /* background-image: url('../assets/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background: #FF4022;
+    background: linear-gradient(45deg,rgba(255, 64, 34, 1) 0%, rgba(255, 141, 34, 1) 100%);
+}

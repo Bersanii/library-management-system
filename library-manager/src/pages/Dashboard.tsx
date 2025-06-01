@@ -15,7 +15,7 @@ const Dashboard = () => {
     <div>
       <Container className="mt-3">
 
-        <Button as={Link as any} to="/" variant="primary" className="mb-4">
+        <Button as={Link as any} to="/" variant="primary" className="text-white mb-4">
           ← Voltar para o catálogo 
         </Button>
         <h2>Dashboard</h2>

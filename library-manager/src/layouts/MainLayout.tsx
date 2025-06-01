@@ -20,8 +20,8 @@ const MainLayout = () => {
           </Navbar.Brand>
 
           {isLogged ?
-            <Nav >
-              <NavDropdown title={user.nome}>
+            <Nav>
+              <NavDropdown className="text-white" title={user.nome}>
                 <NavDropdown.Item as={Link as any} to='/dashboard'>Meus empréstimos</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logoutAction}>Sair</NavDropdown.Item>
@@ -29,8 +29,8 @@ const MainLayout = () => {
             </Nav>
           : (
             <>
-              <Button as={Link as any} to="/login" className="ms-auto">Entrar</Button>
-              <Button as={Link as any} to="/cadastro">Cadastre-se</Button>
+              <Button as={Link as any} to="/login" className="text-white ms-auto">Entrar</Button>
+              <Button as={Link as any} to="/cadastro" className="text-white">Cadastre-se</Button>
             </>
           )}
         </Container>
