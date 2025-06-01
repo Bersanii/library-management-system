@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Container, Form, Button, Row, Col, Card } from "react-bootstrap";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+import { useAuth } from '../context/auth'
 
 const API_URL = import.meta.env.VITE_API_URL
 
 const Cadastro = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [cpf, setCpf] = useState("");
   const [nome, setNome] = useState("");
@@ -16,6 +18,11 @@ const Cadastro = () => {
   const [senha, setSenha] = useState("");
   const [ra, setRa] = useState("");
   const [curso, setCurso] = useState("");
+  const [registro, setRegistro] = useState("");
+  const [departamento, setDepartamento] = useState("");
+
+  const [searchParams] = useSearchParams();
+  const tipo = searchParams.get('tipo') ?? 'Alu';
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -28,7 +35,9 @@ const Cadastro = () => {
       senha,
       ra,
       curso,
-      tipo: 'alu'
+      registro,
+      departamento,
+      tipo
     };
 
     try {
@@ -44,10 +53,13 @@ const Cadastro = () => {
         throw new Error();
       }
 
-      // const data = await response.json();
-
       toast.success('Cadastro efetuado com sucesso.');
-      navigate("/login", { replace: true });
+
+      // Se for um adm e acabou de cadastrar um Servidor redirecionar para dashboard
+      if (tipo == 'Ser' && user && user.tipo == 'Adm')
+        navigate("/dashboard-adm", { replace: true });
+      else
+        navigate("/login", { replace: true });
     } catch (err) {
       console.error(err);
       toast.error('Erro ao efetuar o cadastro.');
@@ -92,25 +104,54 @@ const Cadastro = () => {
               <Form.Control type="password" value={senha} onChange={(e) => setSenha(e.target.value)} />
             </Form.Group>
 
-            <h5>Dados do aluno</h5>
-            <hr className="mt-0" />
+            {tipo == 'Alu' ?
+              <>
+                <h5>Dados do aluno</h5>
+                <hr className="mt-0" />
 
-            <Row>
-              <Form.Group as={Col} className="mb-3" controlId="ra">
-                <Form.Label>RA</Form.Label>
-                <Form.Control type="text" value={ra} onChange={(e) => setRa(e.target.value)} />
-              </Form.Group>
+                <Row>
+                  <Form.Group as={Col} className="mb-3" controlId="ra">
+                    <Form.Label>RA</Form.Label>
+                    <Form.Control type="text" value={ra} onChange={(e) => setRa(e.target.value)} />
+                  </Form.Group>
 
-              <Form.Group as={Col} controlId="curso">
-                <Form.Label>Curso</Form.Label>
-                <Form.Select className="mb-3" value={curso} onChange={(e) => setCurso(e.target.value)}>
-                  <option value="">Selecione o curso</option>
-                  <option value="Ciências da Computação">Ciências da Computação</option>
-                  <option value="Geografia">Geografia</option>
-                  <option value="Geologia">Geologia</option>
-                </Form.Select>
-              </Form.Group>
-            </Row>
+                  <Form.Group as={Col} controlId="curso">
+                    <Form.Label>Curso</Form.Label>
+                    <Form.Select className="mb-3" value={curso} onChange={(e) => setCurso(e.target.value)}>
+                      <option value="">Selecione o curso</option>
+                      <option value="Ciências da Computação">Ciências da Computação</option>
+                      <option value="Geografia">Geografia</option>
+                      <option value="Geologia">Geologia</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Row>
+              </>
+              : <></>
+            }
+
+            {tipo == 'Ser' ?
+              <>
+                <h5>Dados do Servidor</h5>
+                <hr className="mt-0" />
+
+                <Row>
+                  <Form.Group as={Col} className="mb-3" controlId="registro">
+                    <Form.Label>Registro</Form.Label>
+                    <Form.Control type="text" value={registro} onChange={(e) => setRegistro(e.target.value)} />
+                  </Form.Group>
+
+                  <Form.Group as={Col} controlId="departamento">
+                    <Form.Label>Departamento</Form.Label>
+                    <Form.Select className="mb-3" value={departamento} onChange={(e) => setDepartamento(e.target.value)}>
+                      <option value="">Selecione o departamento</option>
+                      <option value="IGCE">IGCE</option>
+                      <option value="IB">IB</option>
+                    </Form.Select>
+                  </Form.Group>
+                </Row>
+              </>
+              : <></>
+            }
 
             <div className="d-flex">
               <Button as={Link as any} to="/" variant="link" className="text-primary">← Voltar</Button>

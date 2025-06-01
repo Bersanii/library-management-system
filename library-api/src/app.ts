@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUsuario, getUsuario } from './controllers/usuarioController';
+import { createUsuario, getUsuario, getUsuarios } from './controllers/usuarioController';
 import { getObras, getObra } from './controllers/obraController';
 import { login } from './controllers/authController';
 import cors from 'cors';
@@ -12,6 +12,7 @@ app.use(express.json());
 app.post('/api/login', login);
 
 app.get('/api/usuario', getUsuario);
+app.get('/api/usuarios', getUsuarios);
 app.post('/api/usuario', createUsuario);
 
 app.get('/api/getObras', getObras);

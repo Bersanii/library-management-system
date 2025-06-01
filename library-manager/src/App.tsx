@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/auth";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import DashboardAdm from "./pages/DashboardAdm";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
 import Obra from "./pages/Obra";
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
           {
             element: <ProtectedRoute />,
             children: [
-              { path: "dashboard", element: <Dashboard /> }
+              { path: "dashboard-adm", element: <DashboardAdm /> }
             ]
           }
         ] 

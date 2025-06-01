@@ -43,7 +43,9 @@ const Login = () => {
             </Form.Group>
 
             <div className="d-flex">
-              <Button as={Link as any} to="/" variant="link" className="text-primary">← Voltar</Button>
+              <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0">
+                <i className="bi bi-arrow-left me-2" />Voltar
+              </Button>
               <Button variant="primary" type="submit" className="ms-auto text-white"><i className="bi bi-box-arrow-in-right me-2"></i>Login</Button>
             </div>
           </Form>
