@@ -6,7 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const Dashboard = () => {
+const DashboardAdm = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
   const [alunos, setAlunos] = useState([]);
@@ -50,8 +50,13 @@ const Dashboard = () => {
 
         <Row>
           <Col sm={12} lg={6}>
-            <h4>Servidores</h4>
-            <Table striped bordered hover>
+            <div className="d-flex align-items-center justify-content-between">
+              <h4>Servidores</h4>
+              <Button as={Link as any} to={{pathname: '/cadastro', search: '?tipo=Ser'}} variant="link" className="text-primary text-decoration-none p-0">
+                <i className="bi bi-plus me-2" />Cadastrar um servidor
+              </Button>
+            </div>
+            <Table hover>
               <thead>
                 <tr>
                   <th>Cpf</th>
@@ -72,13 +77,10 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </Table>
-            <Button as={Link as any} to={{pathname: '/cadastro', search: '?tipo=Ser'}} variant="link" className="text-primary text-decoration-none p-0">
-              <i className="bi bi-plus me-2" />Cadastrar um servidor
-            </Button>
           </Col>
           <Col sm={12} lg={6}>
             <h4>Alunos</h4>
-            <Table striped bordered hover>
+            <Table hover>
               <thead>
                 <tr>
                   <th>Cpf</th>
@@ -108,4 +110,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardAdm;

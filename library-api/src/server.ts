@@ -53,7 +53,7 @@ Exemplar.afterSync(async () => {
       const quantidadeExemplares = Math.floor(Math.random() * 3) + 1; // entre 1 e 3 exemplares por obra
 
       return Array.from({ length: quantidadeExemplares }, (_, i) => ({
-        tombo: `T${index + 1}-${i + 1}`,
+        // tombo: `T${index + 1}-${i + 1}`,
         dataAquisicao: new Date(2022, 0, 1 + i),
         sessao: ['A1-P3-5', 'A2-P1-8', 'B2-P8-2', 'C3-P1-5'][index % 4],
         status: 'disp',

@@ -22,7 +22,7 @@ const Cadastro = () => {
   const [departamento, setDepartamento] = useState("");
 
   const [searchParams] = useSearchParams();
-  const tipo = searchParams.get('tipo') ?? 'Alu';
+  const tipo = searchParams.get('tipo') ?? 'Alu'; // Tipo padrão Aluno
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();

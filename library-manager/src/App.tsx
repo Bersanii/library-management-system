@@ -3,6 +3,7 @@ import ProtectedRoute from "./routes/ProtectedRoute";
 import { AuthProvider } from "./context/auth";
 import Login from "./pages/Login";
 import DashboardAdm from "./pages/DashboardAdm";
+import DashboardSer from "./pages/DashboardSer";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
 import Obra from "./pages/Obra";
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
           {
             element: <ProtectedRoute />,
             children: [
-              { path: "dashboard-adm", element: <DashboardAdm /> }
+              { path: "dashboard-adm", element: <DashboardAdm /> },
+              { path: "dashboard-ser", element: <DashboardSer /> }
             ]
           }
         ] 

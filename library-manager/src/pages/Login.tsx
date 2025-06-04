@@ -5,7 +5,7 @@ import { Container, Form, Button, Card } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login, user } = useAuth();
   const navigate = useNavigate();
 
   const [cpf, setCpf] = useState("");
@@ -18,7 +18,8 @@ const Login = () => {
 
     if (success){
       toast.success('Login efetuado.')
-      navigate("/dashboard");
+      
+      navigate("/");
     } else {
       toast.error('Usuário/Senha inválidos.')
     }

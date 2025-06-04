@@ -1,6 +1,6 @@
 import express from 'express';
 import { createUsuario, getUsuario, getUsuarios } from './controllers/usuarioController';
-import { getObras, getObra } from './controllers/obraController';
+import { getObras, getObra, createObra } from './controllers/obraController';
 import { login } from './controllers/authController';
 import cors from 'cors';
 
@@ -17,6 +17,7 @@ app.post('/api/usuario', createUsuario);
 
 app.get('/api/getObras', getObras);
 app.get('/api/getObra/:isbn', getObra);
+app.post('/api/createObra', createObra);
 
 
 export default app;

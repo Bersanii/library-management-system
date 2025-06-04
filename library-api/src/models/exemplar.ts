@@ -1,11 +1,11 @@
-import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes } from 'sequelize';
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
 import { Obra } from './obra';
 
 export class Exemplar extends Model<
   InferAttributes<Exemplar>,
   InferCreationAttributes<Exemplar>
 > {
-  declare tombo: string;
+  declare tombo: CreationOptional<number>;
   declare dataAquisicao: Date;
   declare sessao: string;
   declare status: string; // disp | empr
@@ -16,8 +16,9 @@ export const ExemplarFactory = (sequelize: Sequelize) => {
   Exemplar.init(
     {
       tombo: {
-        type: DataTypes.STRING,
-        primaryKey: true
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
       },
       dataAquisicao: DataTypes.DATE,
       sessao: DataTypes.STRING,

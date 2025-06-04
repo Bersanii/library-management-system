@@ -55,3 +55,24 @@ export async function getObra(_req: Request, res: Response) {
     res.status(500).json({ error: 'Erro ao buscar obra' });
   }
 }
+
+export async function createObra(_req: Request, res: Response) {
+  const { isbn, titulo, autor, editora, paginas, descricao, linkCapa, qtdExemplares, sessao } = _req.body;
+
+  try {
+    await Obra.create({isbn, titulo, autor, editora, paginas, descricao, linkCapa})
+
+    for(let i = 0; i < qtdExemplares; i++) {
+      await Exemplar.create({
+        isbn,
+        status: 'disp',
+        dataAquisicao: new Date(),
+        sessao,
+      });
+    };
+
+    res.status(200).json({});
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar obra' });
+  }
+}
