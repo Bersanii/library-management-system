@@ -18,6 +18,7 @@ const Home = () => {
       const response = await fetch(`${API_URL}/getObras${query}`);
       if (!response.ok) throw new Error("Erro ao buscar obras");
       const data = await response.json();
+
       setObras(data);
     } catch (err) {
       console.error(err);
