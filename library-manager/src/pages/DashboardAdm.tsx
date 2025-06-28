@@ -56,7 +56,7 @@ const DashboardAdm = () => {
                 <i className="bi bi-plus me-2" />Cadastrar um servidor
               </Button>
             </div>
-            <Table hover>
+            <Table bordered hover>
               <thead>
                 <tr>
                   <th>Cpf</th>
@@ -65,7 +65,7 @@ const DashboardAdm = () => {
               </thead>
               <tbody>
                 {servidores.map((servidor: any) => (
-                  <tr>
+                  <tr key={servidor?.cpf}>
                     <td>{servidor?.cpf}</td>
                     <td>{servidor?.nome}</td>
                     <td style={{alignItems: 'end'}}>
@@ -80,7 +80,7 @@ const DashboardAdm = () => {
           </Col>
           <Col sm={12} lg={6}>
             <h4>Alunos</h4>
-            <Table hover>
+            <Table bordered hover>
               <thead>
                 <tr>
                   <th>Cpf</th>
@@ -90,7 +90,7 @@ const DashboardAdm = () => {
               </thead>
               <tbody>
                 {alunos.map((aluno: any) => (
-                  <tr>
+                  <tr key={aluno?.cpf}>
                     <td>{aluno?.cpf}</td>
                     <td>{aluno?.nome}</td>
                     <td style={{alignItems: 'end'}}>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import { Container, Button, Spinner, Row, Col, Table, Form, Modal } from "react-bootstrap";
+import { formatDateInput, getStatusDesc } from "../utils/format";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -20,22 +21,6 @@ const EmprestimoForm = () => {
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Função para formatar como dd/mm/aaaa
-  const formatDateInput = (value: string) => {
-    // Remove tudo que não é número
-    const digits = value.replace(/\D/g, "").slice(0, 8);
-
-    // Monta a data com slashes automaticamente
-    if (digits.length <= 2) {
-      return digits;
-    } else if (digits.length <= 4) {
-      return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-    } else {
-      return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
-    }
-  };
-
 
   const fetchAvailableObras = async (search: string = "") => {
     if (search && search.length < 3) return;
@@ -62,13 +47,6 @@ const EmprestimoForm = () => {
 
     return () => clearTimeout(delayDebounce);
   }, [obraSearchKeyword]);
-
-  function getStatusDesc(status: String){
-    if(status == 'empr')
-      return 'Emprestado';
-    else
-      return 'Disponível'
-  }
 
   const handleModal = () => {
     setStage(1);

@@ -4,8 +4,8 @@ import { AuthProvider } from "./context/auth";
 import Login from "./pages/Login";
 import DashboardAdm from "./pages/DashboardAdm";
 import DashboardSer from "./pages/DashboardSer";
-import Emprestimos from "./pages/Emprestimos";
 import Emprestimo from "./pages/Emprestimo";
+import Devolucao from "./pages/Devolucao";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
 import Obra from "./pages/Obra";
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
             children: [
               { path: "dashboard-adm", element: <DashboardAdm /> },
               { path: "dashboard-ser", element: <DashboardSer /> },
-              { path: "emprestimos", element: <Emprestimos /> },
-              { path: "emprestimo", element: <Emprestimo /> }
+              { path: "emprestimo", element: <Emprestimo /> },
+              { path: "devolucao", element: <Devolucao /> }
             ]
           }
         ] 
