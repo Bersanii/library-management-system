@@ -1,4 +1,10 @@
-import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
+import { DataTypes, Model, Sequelize, InferAttributes, InferCreationAttributes, CreationOptional,
+  NonAttribute,
+  Association,
+  HasManyAddAssociationsMixin,
+  HasManyAddAssociationMixin,
+  BelongsToManyAddAssociationsMixin,
+  BelongsToManyAddAssociationMixin } from 'sequelize';
 import { Usuario } from './usuario';
 import { Exemplar } from './exemplar';
 
@@ -9,8 +15,13 @@ export class Emprestimo extends Model<
   declare id: CreationOptional<number>;
   declare dataHoraEmprestimo: Date;
   declare prazoDevolucao: Date;
-  declare dataHoraDevolucao: Date;
+  declare dataHoraDevolucao: CreationOptional<Date>;
   declare cpf: string;
+
+  declare addExemplar: BelongsToManyAddAssociationMixin<Exemplar, number>;
+  declare addExemplars: BelongsToManyAddAssociationsMixin<Exemplar, number>;
+  declare getExemplars: () => Promise<Exemplar[]>;
+  declare setExemplars: (exemplares: Exemplar[]) => Promise<void>;
 }
 
 export const EmprestimoFactory = (sequelize: Sequelize) => {
@@ -23,7 +34,10 @@ export const EmprestimoFactory = (sequelize: Sequelize) => {
       },
       dataHoraEmprestimo: DataTypes.DATE,
       prazoDevolucao: DataTypes.DATE,
-      dataHoraDevolucao: DataTypes.DATE,
+      dataHoraDevolucao: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
       cpf: {
         type: DataTypes.STRING,
         allowNull: false

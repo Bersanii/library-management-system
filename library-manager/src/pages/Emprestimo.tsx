@@ -94,7 +94,7 @@ const EmprestimoForm = () => {
         exemplares: selectedExemplares.map((ex) => ex.tombo), // Send only exemplar IDs
       };
 
-      const response = await fetch(`${API_URL}/emprestimos`, {
+      const response = await fetch(`${API_URL}/createEmprestimo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -329,7 +329,7 @@ const EmprestimoForm = () => {
                           onClick={() => handleAddExemplar(exemplar)}
                           disabled={selectedExemplares.some(
                             (ex) => ex.tombo === exemplar.tombo
-                          ) && exemplar.status == 'disp'}
+                          ) || exemplar.status == 'empr'}
                         >
                           Selecionar
                         </Button>
