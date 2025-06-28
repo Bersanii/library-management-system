@@ -1,7 +1,7 @@
 import express from 'express';
 import { createUsuario, getUsuario, getUsuarios } from './controllers/usuarioController';
 import { getObras, getObra, createObra } from './controllers/obraController';
-import { getEmprestimos } from './controllers/emprestimoController';
+import { getEmprestimos, createEmprestimo } from './controllers/emprestimoController';
 import { login } from './controllers/authController';
 import cors from 'cors';
 
@@ -21,6 +21,7 @@ app.get('/api/getObra/:isbn', getObra);
 app.post('/api/createObra', createObra);
 
 app.post('/api/getEmprestimos', getEmprestimos);
+app.post('/api/createEmprestimo', createEmprestimo);
 
 
 export default app;

@@ -12,26 +12,44 @@ const EmprestimoForm = () => {
 
   const [selectedExemplares, setSelectedExemplares] = useState<any[]>([]);
   const [showExemplarModal, setShowExemplarModal] = useState(false);
-  const [exemplarSearchKeyword, setExemplarSearchKeyword] = useState("");
+  const [obraSearchKeyword, setObraSearchKeyword] = useState("");
+  const [stage, setStage] = useState(1);
+  const [obras, setObras] = useState<any[]>([]);
+  const [obraTemp, setObraTemp] = useState<any>(null);
   const [exemplares, setExemplares] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchAvailableExemplares = async (search: string = "") => {
+  // Função para formatar como dd/mm/aaaa
+  const formatDateInput = (value: string) => {
+    // Remove tudo que não é número
+    const digits = value.replace(/\D/g, "").slice(0, 8);
+
+    // Monta a data com slashes automaticamente
+    if (digits.length <= 2) {
+      return digits;
+    } else if (digits.length <= 4) {
+      return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    } else {
+      return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+    }
+  };
+
+
+  const fetchAvailableObras = async (search: string = "") => {
     if (search && search.length < 3) return;
     setLoading(true);
     setError(null);
     try {
       const query = search ? `?q=${encodeURIComponent(search)}` : "";
       const response = await fetch(`${API_URL}/getObras${query}`);
-      if (!response.ok) throw new Error("Erro ao buscar exemplares");
+      if (!response.ok) throw new Error("Erro ao buscar obras");
       const data = await response.json();
-      // adiciona o campo exemplares que é preenchido quando necessário
-      setExemplares(data);
+      setObras(data);
     } catch (err: any) {
-      console.error("Failed to fetch exemplars:", err);
-      setError("Não foi possível carregar os exemplares. Tente novamente.");
+      console.error("Failed to fetch obras:", err);
+      setError("Não foi possível carregar as obras. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -39,12 +57,24 @@ const EmprestimoForm = () => {
 
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
-      fetchAvailableExemplares(exemplarSearchKeyword);
+      fetchAvailableObras(obraSearchKeyword);
     }, 300);
 
     return () => clearTimeout(delayDebounce);
-  }, [exemplarSearchKeyword]);
+  }, [obraSearchKeyword]);
 
+  function getStatusDesc(status: String){
+    if(status == 'empr')
+      return 'Emprestado';
+    else
+      return 'Disponível'
+  }
+
+  const handleModal = () => {
+    setStage(1);
+    setExemplares([]);
+    setShowExemplarModal(true);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +91,7 @@ const EmprestimoForm = () => {
       const emprestimoData = {
         prazoDevolucao,
         cpf,
-        exemplares: selectedExemplares.map((ex) => ex.id), // Send only exemplar IDs
+        exemplares: selectedExemplares.map((ex) => ex.tombo), // Send only exemplar IDs
       };
 
       const response = await fetch(`${API_URL}/emprestimos`, {
@@ -77,7 +107,6 @@ const EmprestimoForm = () => {
         throw new Error(errorData.message || "Erro ao registrar empréstimo");
       }
 
-      alert("Empréstimo registrado com sucesso!");
       navigate("/"); // Redirect to home or loan list after successful submission
     } catch (err: any) {
       console.error("Failed to register loan:", err);
@@ -87,14 +116,31 @@ const EmprestimoForm = () => {
     }
   };
 
+  const handleSelectObra = async (obra: any) => {
+    setLoading(true);
+    setError(null);
+    setObraTemp(obra);
+    try {
+      const response = await fetch(`${API_URL}/getObra/${obra.isbn}`);
+      if (!response.ok) throw new Error("Erro ao buscar exemplares");
+      const data = await response.json();
+      setExemplares(data.exemplares);
+      setStage(2);
+    } catch (err: any) {
+      console.error("Failed to fetch exemplars:", err);
+      setError("Não foi possível carregar os exemplares. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleAddExemplar = (exemplar: any) => {
-    if (!selectedExemplares.some((ex) => ex.id === exemplar.id)) {
+    exemplar.obra = obraTemp; // adiciona uma cópia dos dados da obra pra usar na UI
+    if (!selectedExemplares.some((ex) => ex.tombo === exemplar.tombo)) {
       setSelectedExemplares((prev) => [...prev, exemplar]);
     }
     setShowExemplarModal(false);
-    setExemplarSearchKeyword("");
-    setExemplares([]);
+    setObraSearchKeyword("");
   };
 
   const handleRemoveExemplar = (exemplarId: number) => {
@@ -125,9 +171,10 @@ const EmprestimoForm = () => {
           <Form.Group as={Col} controlId="formPrazoDevolucao">
             <Form.Label>Prazo de Devolução</Form.Label>
             <Form.Control
-              type="date"
+              type="text"
+              placeholder="dd/mm/aaaa"
               value={prazoDevolucao}
-              onChange={(e) => setPrazoDevolucao(e.target.value)}
+              onChange={(e) => setPrazoDevolucao(formatDateInput(e.target.value))}
               required
             />
           </Form.Group>
@@ -149,7 +196,7 @@ const EmprestimoForm = () => {
           <Button
             variant="outline-primary"
             className="ms-3"
-            onClick={() => setShowExemplarModal(true)}
+            onClick={() => handleModal()}
           >
             Adicionar Exemplar
           </Button>
@@ -158,21 +205,20 @@ const EmprestimoForm = () => {
             <Table bordered className="mt-3">
               <thead>
                 <tr>
-                  <th>ID Exemplar</th>
-                  <th>Título da Obra</th>
+                  <th>Obra</th>
+                  <th>Tombo</th>
                   <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
                 {selectedExemplares.map((exemplar) => (
-                  <tr key={exemplar.id}>
-                    <td>{exemplar.id}</td>
-                    <td>{exemplar.tituloObra || "N/A"}</td>{" "}
-                    {/* Assuming exemplar has a title */}
+                  <tr key={exemplar.tombo}>
+                    <td>{exemplar.obra?.titulo || "N/A"}</td>
+                    <td>{exemplar.tombo}</td>
                     <td>
                       <Button
                         variant="link"
-                        className="text-danger p-0"
+                        className="text-danger p-0 text-decoration-none"
                         onClick={() => handleRemoveExemplar(exemplar.id)}
                       >
                         <i className="bi bi-x-circle" /> Remover
@@ -215,58 +261,97 @@ const EmprestimoForm = () => {
         <Modal.Header closeButton>
           <Modal.Title>Selecionar Exemplares</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <Form.Control
-            type="text"
-            placeholder="Buscar por ID, título da obra..."
-            value={exemplarSearchKeyword}
-            onChange={(e) => setExemplarSearchKeyword(e.target.value)}
-            className="mb-3"
-          />
-          {exemplares.length > 0 ? (
-            <Table hover size="sm">
-              <thead>
-                <tr>
-                  <th>ISBN</th>
-                  <th>Título da Obra</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {exemplares.map((exemplar: any) => (
-                  <>
-                    <tr key={exemplar.isbn}>
-                      <td>{exemplar.isbn}</td>
-                      <td>{exemplar.titulo}</td>
-                      {/* Adjust 'titulo' if your exemplar object has a different property for the title */}
+        {stage == 1 ? (
+          <Modal.Body>
+            <Form.Control
+              type="text"
+              placeholder="Buscar por ID, título da obra..."
+              value={obraSearchKeyword}
+              onChange={(e) => setObraSearchKeyword(e.target.value)}
+              className="mb-3"
+            />
+            {obras.length > 0 ? (
+              <Table hover size="sm">
+                <thead>
+                  <tr>
+                    <th>ISBN</th>
+                    <th>Título da Obra</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {obras.map((obra: any) => (
+                    <tr key={obra.isbn}>
+                      <td>{obra.isbn}</td>
+                      <td>{obra.titulo}</td>
+                      <td>
+                        <Button
+                          variant="outline-success"
+                          size="sm"
+                          onClick={() => handleSelectObra(obra)}
+                        >
+                          Selecionar
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <p className="text-center text-muted">
+                Nenhuma obra encontrada ou digite pelo menos 3 caracteres para buscar.
+              </p>
+            )}
+            {error && <div className="alert alert-danger mt-3">{error}</div>}
+          </Modal.Body>
+        ) : (
+          <Modal.Body>
+            {exemplares.length > 0 ? (
+              <Table hover size="sm">
+                <thead>
+                  <tr>
+                    <th>Tombo</th>
+                    <th>Sessão</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {exemplares.map((exemplar: any) => (
+                    <tr key={exemplar.tombo}>
+                      <td>{exemplar.tombo}</td>
+                      <td>{exemplar.sessao}</td>
+                      <td>{getStatusDesc(exemplar.status)}</td>
                       <td>
                         <Button
                           variant="outline-success"
                           size="sm"
                           onClick={() => handleAddExemplar(exemplar)}
                           disabled={selectedExemplares.some(
-                            (ex) => ex.id === exemplar.id
-                          )}
+                            (ex) => ex.tombo === exemplar.tombo
+                          ) && exemplar.status == 'disp'}
                         >
                           Selecionar
                         </Button>
                       </td>
                     </tr>
-                    <tr>
-                        
-                    </tr>
-                  </>
-                ))}
-              </tbody>
-            </Table>
-          ) : (
-            <p className="text-center text-muted">
-              Nenhum exemplar encontrado ou digite pelo menos 3 caracteres para buscar.
-            </p>
-          )}
-          {error && <div className="alert alert-danger mt-3">{error}</div>}
-        </Modal.Body>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <p className="text-center text-muted">
+                Nenhum exemplar encontrado ou digite pelo menos 3 caracteres para buscar.
+              </p>
+            )}
+            {error && <div className="alert alert-danger mt-3">{error}</div>}
+          </Modal.Body>
+        )}
         <Modal.Footer>
+          {stage == 2 && (
+            <Button variant="primary" className="text-white" onClick={() => setStage(1)}>
+              Voltar
+            </Button>
+          )}
           <Button variant="secondary" onClick={() => setShowExemplarModal(false)}>
             Fechar
           </Button>

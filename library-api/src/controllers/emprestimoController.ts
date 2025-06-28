@@ -20,3 +20,11 @@ export async function getEmprestimos(_req: Request, res: Response) {
     res.status(500).json({ error: 'Erro ao buscar emprestimos' });
   }
 }
+
+export async function createEmprestimo(_req: Request, res: Response) {
+  try {
+    
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao cadastrar emprestimo' });
+  }
+}
