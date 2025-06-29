@@ -71,7 +71,7 @@ const Cadastro = () => {
       <Card className="mx-auto my-auto rounded-4" style={{ maxWidth: '35vw' }}>
         <Card.Body className="p-5">
           <h2 className="mb-3">Cadastro</h2>
-          <p className="mb-3">Preencha seus dados para realizar o cadastro de aluno no sistema.</p>
+          <p className="mb-3">Preencha os dados para realizar o cadastro.</p>
 
           <Form onSubmit={handleSubmit}>
             <h5>Dados Pessoais</h5>

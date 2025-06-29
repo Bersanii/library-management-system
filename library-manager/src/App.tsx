@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import DashboardAdm from "./pages/DashboardAdm";
 import DashboardSer from "./pages/DashboardSer";
 import Emprestimo from "./pages/Emprestimo";
+import DashboardAlu from "./pages/DashboardAlu";
 import Devolucao from "./pages/Devolucao";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
             children: [
               { path: "dashboard-adm", element: <DashboardAdm /> },
               { path: "dashboard-ser", element: <DashboardSer /> },
+              { path: "dashboard-alu", element: <DashboardAlu /> },
               { path: "emprestimo", element: <Emprestimo /> },
               { path: "devolucao", element: <Devolucao /> }
             ]
