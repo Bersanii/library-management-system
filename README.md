@@ -10,8 +10,9 @@ Web app for managing a library. Built using React, Django and SQLite
 **library-database** é o arquivo de banco de dados da biblioteca em sqlite
 
 # Configurando o projeto
-- Instalar o node `sudo dnf install node`.
+- Instalar o node `sudo dnf install node`, isso para sistemas baseados em fedora.
     - O gerenciador de pacotes npm será instalado automaticamente.
+- Para sistemas baseados em Ubuntu, instalar usando `sudo apt install nodejs npm`.
 
 ## Instalando as dependências
 Depencias npm geralmente são instaladas localmente para cada projeto, a lista de dependências de um projeto node está sempre localizada em `package.json > dependencies`.
