@@ -200,6 +200,21 @@ Este repositório contém a estrutura de um banco de dados SQLite utilizado para
 - usuarios ⟷ emprestimos: via campo cpf
 - emprestimos ⟷ exemplares: via tabela intermediária emprestimo-exemplares
 
+# 🚀 Tecnologias Utilizadas
+
+- Este projeto foi desenvolvido utilizando uma stack moderna e eficiente, integrando diversas linguagens e ferramentas para proporcionar um sistema completo e robusto.
+
+## 🧠 Linguagens e Tecnologias Principais
+
+| Tecnologia               | Descrição                                                                                                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **TypeScript**           | Linguagem principal utilizada no projeto, tanto no frontend quanto no backend. É fortemente tipada e traz maior segurança e produtividade ao desenvolvimento. O uso é evidenciado por arquivos `.ts` e `.tsx`.     |
+| **Node.js + JavaScript** | O backend é executado em Node.js, sendo o ambiente de runtime para o TypeScript compilado. Utiliza o framework **Express** para a construção da API, conforme indicado no `package.json` e no arquivo `server.ts`. |
+| **React**                | Biblioteca JavaScript (usada com TypeScript neste projeto) utilizada para a construção da interface de usuário no frontend. Permite criar componentes reutilizáveis e interativos de forma eficiente.              |
+| **SQLite + SQL**         | O banco de dados utilizado é o **SQLite**, um sistema leve e prático para aplicações menores. As interações com o banco são realizadas por meio de **SQL**, utilizando o ORM **Sequelize** no backend.             |
+| **SCSS / CSS**           | Para estilização da interface, o projeto utiliza **SCSS**, um pré-processador CSS que permite escrever estilos de forma mais organizada, reutilizável e com recursos adicionais como variáveis e mixins.           |
+
+
 
 
 ## Referências
