@@ -100,6 +100,24 @@ Para instalar as dependências desse projeto:
   - Descrição da obra
   - Lista de exemplares disponíveis para reserva
   - Indicação de exemplares já emprestados
+ 
+  # 📚 Banco de Dados da Biblioteca
+
+Este repositório contém a estrutura de um banco de dados SQLite utilizado para o gerenciamento de uma biblioteca. Abaixo está a descrição do esquema da base de dados
+
+## 🔹 Tabela usuarios
+- Armazena informações de todos os usuários cadastrados, sejam alunos, servidores ou administradores.
+
+| Campo            | Tipo         | Descrição                               |
+| ---------------- | ------------ | --------------------------------------- |
+| `cpf`            | VARCHAR(255) | Identificador único do usuário (**PK**) |
+| `nome`           | VARCHAR(255) | Nome completo do usuário                |
+| `endereco`       | VARCHAR(255) | Endereço residencial                    |
+| `dataNascimento` | DATETIME     | Data de nascimento                      |
+| `contato`        | VARCHAR(255) | Telefone ou e-mail                      |
+| `tipo`           | VARCHAR(255) | Tipo de usuário (`Alu`, `Ser`, `Adm`)   |
+| `senha`          | VARCHAR(255) | Senha de acesso                         |
+
 
 
 ## Referências
