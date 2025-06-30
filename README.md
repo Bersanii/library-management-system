@@ -28,6 +28,19 @@ Para instalar as dependências desse projeto:
     - React-Bootstrap
     - React-Toastify
     - Bootstrap icons
+ 
+## 🧭 Funcionalidades da Aplicação
+
+# Catálogo de Obras (Home)
+
+A página inicial da biblioteca apresenta um catálogo com todas as obras disponíveis, exibindo informações como:
+    - Título da obra
+    - Autor
+    - Editora
+    - ISBN
+    - Capa do livro
+
+É possível pesquisar livros por qualquer um desses critérios. Cada obra possui um botão “Ver detalhes”, que redireciona para uma página com informações complementares.
 
 ## Referências
 Auth: https://medium.com/@sustiono19/how-to-create-a-protected-route-in-react-with-react-router-dom-v7-6680dae765fb
