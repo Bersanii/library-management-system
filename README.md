@@ -106,6 +106,7 @@ Para instalar as dependências desse projeto:
 Este repositório contém a estrutura de um banco de dados SQLite utilizado para o gerenciamento de uma biblioteca. Abaixo está a descrição do esquema da base de dados
 
 ## 🔹 Tabela usuarios
+
 - Armazena informações de todos os usuários cadastrados, sejam alunos, servidores ou administradores.
 
 | Campo            | Tipo         | Descrição                               |
@@ -117,6 +118,87 @@ Este repositório contém a estrutura de um banco de dados SQLite utilizado para
 | `contato`        | VARCHAR(255) | Telefone ou e-mail                      |
 | `tipo`           | VARCHAR(255) | Tipo de usuário (`Alu`, `Ser`, `Adm`)   |
 | `senha`          | VARCHAR(255) | Senha de acesso                         |
+
+## 🔹 Tabela alunos
+
+- Relaciona os usuários do tipo aluno com seus dados acadêmicos.
+
+| Campo   | Tipo         | Descrição                               |
+| ------- | ------------ | --------------------------------------- |
+| `ra`    | VARCHAR(255) | Registro acadêmico (**PK**)             |
+| `curso` | VARCHAR(255) | Curso do aluno                          |
+| `cpf`   | VARCHAR(255) | CPF do usuário (**FK** para `usuarios`) |
+
+
+## 🔹 Tabela servidores
+
+- Contém os dados dos usuários que são servidores da instituição.
+
+| Campo          | Tipo         | Descrição                               |
+| -------------- | ------------ | --------------------------------------- |
+| `registro`     | VARCHAR(255) | Registro funcional (**PK**)             |
+| `departamento` | VARCHAR(255) | Departamento de atuação                 |
+| `cpf`          | VARCHAR(255) | CPF do usuário (**FK** para `usuarios`) |
+
+
+## 🔹 Tabela obras
+
+- Armazena os dados bibliográficos das obras disponíveis na biblioteca.
+
+| Campo       | Tipo         | Descrição                    |
+| ----------- | ------------ | ---------------------------- |
+| `isbn`      | VARCHAR(255) | Código ISBN da obra (**PK**) |
+| `titulo`    | VARCHAR(255) | Título do livro              |
+| `autor`     | VARCHAR(255) | Nome do autor                |
+| `editora`   | VARCHAR(255) | Nome da editora              |
+| `paginas`   | INTEGER      | Quantidade de páginas        |
+| `descricao` | TEXT         | Descrição ou sinopse da obra |
+| `linkCapa`  | VARCHAR(255) | URL da imagem da capa        |
+
+
+## 🔹 Tabela exemplares
+
+- Contém os exemplares físicos das obras.
+
+| Campo           | Tipo         | Descrição                                       |
+| --------------- | ------------ | ----------------------------------------------- |
+| `tombo`         | INTEGER      | Número de tombamento do exemplar (**PK**)       |
+| `dataAquisicao` | DATETIME     | Data de aquisição                               |
+| `sessao`        | VARCHAR(255) | Localização física na estante                   |
+| `status`        | VARCHAR(255) | Status do exemplar (ex: `disp` para disponível) |
+| `isbn`          | VARCHAR(255) | ISBN da obra (**FK** para `obras`)              |
+
+
+## 🔹 Tabela emprestimos
+
+- Registra os empréstimos realizados pelos usuários.
+
+| Campo                | Tipo         | Descrição                               |
+| -------------------- | ------------ | --------------------------------------- |
+| `id`                 | INTEGER      | Identificador do empréstimo (**PK**)    |
+| `dataHoraEmprestimo` | DATETIME     | Data e hora em que o empréstimo ocorreu |
+| `prazoDevolucao`     | DATETIME     | Data limite para devolução              |
+| `dataHoraDevolucao`  | DATETIME     | Data em que o exemplar foi devolvido    |
+| `cpf`                | VARCHAR(255) | CPF do usuário (**FK** para `usuarios`) |
+
+
+## 🔹 Tabela emprestimo-exemplares
+
+- Tabela de associação entre empréstimos e exemplares (muitos-para-muitos).
+
+| Campo           | Tipo     | Descrição                                    |
+| --------------- | -------- | -------------------------------------------- |
+| `EmprestimoId`  | INTEGER  | ID do empréstimo (**FK** para `emprestimos`) |
+| `ExemplarTombo` | INTEGER  | Número do tombo (**FK** para `exemplares`)   |
+| `createdAt`     | DATETIME | Data de criação do registro                  |
+| `updatedAt`     | DATETIME | Data da última atualização                   |
+
+## Relacionamentos Principais
+
+- usuarios ⟷ alunos / servidores: via campo cpf
+- obras ⟷ exemplares: via campo isbn
+- usuarios ⟷ emprestimos: via campo cpf
+- emprestimos ⟷ exemplares: via tabela intermediária emprestimo-exemplares
 
 
 
