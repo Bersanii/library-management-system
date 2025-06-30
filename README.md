@@ -42,5 +42,12 @@ Para instalar as dependências desse projeto:
 
 É possível pesquisar livros por qualquer um desses critérios. Cada obra possui um botão “Ver detalhes”, que redireciona para uma página com informações complementares.
 
+## 📝 Cadastro de Usuários
+
+- A aplicação possui duas telas de cadastro:
+    - **Cadastro de Aluno**: acessível a partir da Home, permite preencher os dados pessoais, RA e curso do aluno.
+    - **Cadastro de Servidor**: acessível apenas por administradores. Permite inserir o registro funcional e selecionar o departamento do servidor.
+
+
 ## Referências
 Auth: https://medium.com/@sustiono19/how-to-create-a-protected-route-in-react-with-react-router-dom-v7-6680dae765fb
