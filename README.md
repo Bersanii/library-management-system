@@ -29,9 +29,9 @@ Para instalar as dependências desse projeto:
     - React-Toastify
     - Bootstrap icons
  
-## 🧭 Funcionalidades da Aplicação
+# 🧭 Funcionalidades da Aplicação
 
-# Catálogo de Obras (Home)
+## Catálogo de Obras (Home)
 
 A página inicial da biblioteca apresenta um catálogo com todas as obras disponíveis, exibindo informações como:
     - Título da obra
