@@ -47,6 +47,67 @@ Para instalar as dependências desse projeto:
 - A aplicação possui duas telas de cadastro:
     - **Cadastro de Aluno**: acessível a partir da Home, permite preencher os dados pessoais, RA e curso do aluno.
     - **Cadastro de Servidor**: acessível apenas por administradores. Permite inserir o registro funcional e selecionar o departamento do servidor.
+ 
+## 🛠️ Dashboard do Administrador
+
+- Além do catálogo de obras, o administrador tem acesso a um painel de controle, com as seguintes funcionalidades:
+    - Cadastrar novos servidores
+    - Excluir alunos e servidores existentes
+ 
+## 🎓 Dashboard do Aluno
+
+- Além do catálogo, os alunos têm acesso a uma aba de empréstimos, que exibe:
+    - Obras atualmente emprestadas
+    - Prazo de devolução
+    - Quantidade de exemplares emprestados
+    - Status de devolução de cada exemplar
+ 
+## 👨‍🏫 Dashboard do Servidor
+
+- O dashboard dos servidores oferece acesso a três seções adicionais:
+    📚 Gerenciamento de Obras
+    -     Visualização de ISBN e título das obras cadastradas
+
+
+Link para visualizar detalhes da obra
+
+
+Opção para excluir obras
+
+
+Barra de pesquisa para localizar obras específicas
+
+
+Cadastro de novas obras com número de exemplares
+
+
+📦 Empréstimo
+Definição do prazo de devolução
+
+
+Informar o CPF do aluno
+
+
+Seleção das obras emprestadas
+
+
+Registro do empréstimo
+
+
+🔄 Devolução
+Pesquisa de empréstimos ativos por CPF
+
+
+Visualização das obras emprestadas
+
+
+Indicação de status de devolução
+
+
+Botão para registrar devolução de cada obra
+
+
+
 
 
 ## Referências
