@@ -33,7 +33,7 @@ Para instalar as dependências desse projeto:
 
 ## Catálogo de Obras (Home)
 
-A página inicial da biblioteca apresenta um catálogo com todas as obras disponíveis, exibindo informações como:
+- A página inicial da biblioteca apresenta um catálogo com todas as obras disponíveis, exibindo informações como:
     - Título da obra
     - Autor
     - Editora
