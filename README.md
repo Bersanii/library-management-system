@@ -65,49 +65,41 @@ Para instalar as dependências desse projeto:
 ## 👨‍🏫 Dashboard do Servidor
 
 - O dashboard dos servidores oferece acesso a três seções adicionais:
-    📚 Gerenciamento de Obras
-    -     Visualização de ISBN e título das obras cadastradas
+  
+    📚 **Gerenciamento de Obras**
+    -  Visualização de ISBN e título das obras cadastradas
+    -  Link para visualizar detalhes da obra
+    -  Opção para excluir obras
+    -  Barra de pesquisa para localizar obras específicas
+    -  Cadastro de novas obras com número de exemplares
+
+    📦 **Empréstimo**
+    -  Definição do prazo de devolução
+    -  Informar o CPF do aluno
+    -  Seleção das obras emprestadas
+    -  Registro do empréstimo
 
 
-Link para visualizar detalhes da obra
+    🔄 **Devolução**
+    -  Pesquisa de empréstimos ativos por CPF
+    -  Visualização das obras emprestadas
+    -  Indicação de status de devolução
+    -  Botão para registrar devolução de cada obra
 
+## 🔐 Login
 
-Opção para excluir obras
+- Tela de autenticação com:
+  - Campo para CPF (login)
+  - Campo para senha
+  - Link para criação de conta por alunos ainda não cadastrados
 
+## 📖 Página da Obra
 
-Barra de pesquisa para localizar obras específicas
-
-
-Cadastro de novas obras com número de exemplares
-
-
-📦 Empréstimo
-Definição do prazo de devolução
-
-
-Informar o CPF do aluno
-
-
-Seleção das obras emprestadas
-
-
-Registro do empréstimo
-
-
-🔄 Devolução
-Pesquisa de empréstimos ativos por CPF
-
-
-Visualização das obras emprestadas
-
-
-Indicação de status de devolução
-
-
-Botão para registrar devolução de cada obra
-
-
-
+- Exibe informações detalhadas da obra selecionada:
+  - Número de páginas
+  - Descrição da obra
+  - Lista de exemplares disponíveis para reserva
+  - Indicação de exemplares já emprestados
 
 
 ## Referências
