@@ -9,25 +9,51 @@ Web app for managing a library. Built using React, Django and SQLite
 
 **library-database** é o arquivo de banco de dados da biblioteca em sqlite
 
-# Configurando o projeto
-- Instalar o node `sudo dnf install node`, isso para sistemas baseados em fedora.
-    - O gerenciador de pacotes npm será instalado automaticamente.
-- Para sistemas baseados em Ubuntu, instalar usando `sudo apt install nodejs npm`.
+# 🚀 Tecnologias Utilizadas
 
-## Instalando as dependências
+- Este projeto foi desenvolvido utilizando uma stack moderna e eficiente, integrando diversas linguagens e ferramentas para proporcionar um sistema completo e robusto.
+
+## 🧠 Linguagens e Tecnologias Principais
+
+| Tecnologia               | Descrição                                                                                                                                                                                                          |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **TypeScript**           | Linguagem principal utilizada no projeto, tanto no frontend quanto no backend. É fortemente tipada e traz maior segurança e produtividade ao desenvolvimento. O uso é evidenciado por arquivos `.ts` e `.tsx`.     |
+| **Node.js + JavaScript** | O backend é executado em Node.js, sendo o ambiente de runtime para o TypeScript compilado. Utiliza o framework **Express** para a construção da API, conforme indicado no `package.json` e no arquivo `server.ts`. |
+| **React**                | Biblioteca JavaScript (usada com TypeScript neste projeto) utilizada para a construção da interface de usuário no frontend. Permite criar componentes reutilizáveis e interativos de forma eficiente.              |
+| **SQLite + SQL**         | O banco de dados utilizado é o **SQLite**, um sistema leve e prático para aplicações menores. As interações com o banco são realizadas por meio de **SQL**, utilizando o ORM **Sequelize** no backend.             |
+| **SCSS / CSS**           | Para estilização da interface, o projeto utiliza **SCSS**, um pré-processador CSS que permite escrever estilos de forma mais organizada, reutilizável e com recursos adicionais como variáveis e mixins.           |
+
+
+# Configurando e executando o projeto
+
+## 1. Instalar o node
+    
+- Linux
+    - Para sistemas baseados em Ubuntu `sudo apt install nodejs npm`
+    - Para sistemas baseados em fedora `sudo dnf install node`. O gerenciador de pacotes npm será instalado automaticamente.
+- Windows https://nodejs.org/en/download 
+
+## 2. Instalando as dependências
 Depencias npm geralmente são instaladas localmente para cada projeto, a lista de dependências de um projeto node está sempre localizada em `package.json > dependencies`.
 
 Para instalar as dependências desse projeto:
-- Acessar `library-api` e executar `npm install` 
+- Acessar `library-api` e executar `npm install` os seguintes pacotes serão instalados: 
     - Express
     - Sequelize
     - Sqlite3
-- Acessar `library-manager` e executar `npm install`
+- Acessar `library-manager` e executar `npm install`, os seguintes pacotes serão instalados:
     - React
     - React Router
     - React-Bootstrap
     - React-Toastify
     - Bootstrap icons
+
+## 3. Executando
+
+- Criar um terminal e acessar o diretório `library-api` e executar `npm run dev`, a api será iniciada na porta 3000.
+- Criar um novo terminal e acessar o diretório `library-manager` e executar `npm run dev`, o frontend será iniciado e o link de acesso ficara disponível no terminal.
+
+As variáveis de ambiente já estão configuradas com os valores necessários para o funcionamento, portanto basta executar os dois comandos acima em terminais diferentes e interagir com a interface web.  
  
 # 🧭 Funcionalidades da Aplicação
 
@@ -101,7 +127,7 @@ Para instalar as dependências desse projeto:
   - Lista de exemplares disponíveis para reserva
   - Indicação de exemplares já emprestados
  
-  # 📚 Banco de Dados da Biblioteca
+# 📚 Banco de Dados da Biblioteca
 
 Este repositório contém a estrutura de um banco de dados SQLite utilizado para o gerenciamento de uma biblioteca. Abaixo está a descrição do esquema da base de dados
 
@@ -199,23 +225,6 @@ Este repositório contém a estrutura de um banco de dados SQLite utilizado para
 - obras ⟷ exemplares: via campo isbn
 - usuarios ⟷ emprestimos: via campo cpf
 - emprestimos ⟷ exemplares: via tabela intermediária emprestimo-exemplares
-
-# 🚀 Tecnologias Utilizadas
-
-- Este projeto foi desenvolvido utilizando uma stack moderna e eficiente, integrando diversas linguagens e ferramentas para proporcionar um sistema completo e robusto.
-
-## 🧠 Linguagens e Tecnologias Principais
-
-| Tecnologia               | Descrição                                                                                                                                                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **TypeScript**           | Linguagem principal utilizada no projeto, tanto no frontend quanto no backend. É fortemente tipada e traz maior segurança e produtividade ao desenvolvimento. O uso é evidenciado por arquivos `.ts` e `.tsx`.     |
-| **Node.js + JavaScript** | O backend é executado em Node.js, sendo o ambiente de runtime para o TypeScript compilado. Utiliza o framework **Express** para a construção da API, conforme indicado no `package.json` e no arquivo `server.ts`. |
-| **React**                | Biblioteca JavaScript (usada com TypeScript neste projeto) utilizada para a construção da interface de usuário no frontend. Permite criar componentes reutilizáveis e interativos de forma eficiente.              |
-| **SQLite + SQL**         | O banco de dados utilizado é o **SQLite**, um sistema leve e prático para aplicações menores. As interações com o banco são realizadas por meio de **SQL**, utilizando o ORM **Sequelize** no backend.             |
-| **SCSS / CSS**           | Para estilização da interface, o projeto utiliza **SCSS**, um pré-processador CSS que permite escrever estilos de forma mais organizada, reutilizável e com recursos adicionais como variáveis e mixins.           |
-
-
-
 
 ## Referências
 Auth: https://medium.com/@sustiono19/how-to-create-a-protected-route-in-react-with-react-router-dom-v7-6680dae765fb
