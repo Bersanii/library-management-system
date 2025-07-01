@@ -51,7 +51,7 @@ Para instalar as dependências desse projeto:
 ## 3. Executando
 
 - Criar um terminal e acessar o diretório `library-api` e executar `npm run dev`, a api será iniciada na porta 3000.
-- Criar um novo terminal e acessar o diretório `library-manager` e executar `npm run dev`, o frontend será iniciado e o link de acesso ficara disponível no terminal.
+- Criar um novo terminal e acessar o diretório `library-manager` e executar `npm run dev`, o frontend será iniciado e o link de acesso ficara disponível no terminal. Por padrão: http://localhost:5173/
 
 As variáveis de ambiente já estão configuradas com os valores necessários para o funcionamento, portanto basta executar os dois comandos acima em terminais diferentes e interagir com a interface web.  
  

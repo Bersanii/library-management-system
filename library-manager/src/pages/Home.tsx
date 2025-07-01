@@ -82,7 +82,7 @@ const Home = () => {
         <h5>Nenhum livro encontrado</h5>
       )}
     
-      <ToastContainer />
+      <ToastContainer position="bottom-center"/>
     </Container>
   );
 };

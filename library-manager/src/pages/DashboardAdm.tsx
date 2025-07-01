@@ -1,14 +1,11 @@
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
-import { useAuth } from "../context/auth";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const DashboardAdm = () => {
-  const { logout } = useAuth();
-  const navigate = useNavigate();
   const [alunos, setAlunos] = useState([]);
   const [servidores, setServidores] = useState([]);
 
@@ -39,7 +36,7 @@ const DashboardAdm = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Container className="mt-3">
 
         <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0 mb-2">
@@ -106,7 +103,7 @@ const DashboardAdm = () => {
         </Row>
       </Container>
       <ToastContainer position="bottom-center" />
-    </div>
+    </>
   );
 };
 

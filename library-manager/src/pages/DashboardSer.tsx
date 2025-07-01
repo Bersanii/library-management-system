@@ -1,13 +1,11 @@
 import { Button, Col, Container, Form, Row, Table } from "react-bootstrap";
-import { useAuth } from "../context/auth";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from 'react-toastify';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const DashboardSer = () => {
-  const navigate = useNavigate();
   const [obras, setObras] = useState([]);
   const [keyword, setKeyword] = useState('');
 
@@ -35,7 +33,7 @@ const DashboardSer = () => {
     };
 
     try {
-      const response = await fetch(`${API_URL}/createObra`, {
+      await fetch(`${API_URL}/createObra`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +91,7 @@ const DashboardSer = () => {
   }, [keyword]);
 
   return (
-    <div>
+    <>
       <Container className="mt-3">
 
         <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0 mb-2">
@@ -207,7 +205,7 @@ const DashboardSer = () => {
         </Row>
       </Container>
       <ToastContainer position="bottom-center" />
-    </div>
+    </>
   );
 };
 

@@ -27,6 +27,22 @@ const Cadastro = () => {
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
+    if (!cpf || !nome || !endereco || !contato || !senha) {
+      toast.error('Preencha todos os campos.');
+      return;
+    }
+
+    if (tipo === 'Alu' && (!ra || !curso)) {
+      toast.error('Preencha os dados do aluno.');
+      return;
+    }
+
+    if (tipo === 'Ser' && (!registro || !departamento)) {
+      toast.error('Preencha os dados do servidor.');
+      return;
+    }
+
+
     const formData = {
       cpf,
       nome,
