@@ -138,7 +138,7 @@ const EmprestimoForm = () => {
           Voltar para o catálogo
         </Button>
 
-        <h2 className="mb-4">Registrar Novo Empréstimo</h2>
+        <h2>Registrar Novo Empréstimo</h2>
         <hr />
 
         <Form onSubmit={handleSubmit}>
@@ -211,7 +211,7 @@ const EmprestimoForm = () => {
           <Button
             variant="primary"
             type="submit"
-            className="mt-3"
+            className="mt-3 text-white"
             disabled={submitting}
           >
             {submitting ? (

@@ -69,3 +69,35 @@ export async function createUsuario(req: Request, res: Response) {
     res.status(500).json({ error: 'Failed to create user' });
   }
 }
+
+export async function deleteUsuario(_req: Request, res: Response) {
+  const { cpf } = _req.params;
+
+  try {
+    // Verifica se o usuário existe
+    const usuario = await Usuario.findByPk(cpf);
+
+    if (!usuario) {
+      res.status(404).json({ error: 'Usuário não encontrado' });
+      return;
+    }
+
+    // Remove dados associados dependendo do tipo
+    if (usuario.tipo === 'Alu') {
+      await Aluno.destroy({ where: { cpf } });
+    }
+
+    if (usuario.tipo === 'Ser') {
+      await Servidor.destroy({ where: { cpf } });
+    }
+
+    // Remove o usuário
+    await Usuario.destroy({ where: { cpf } });
+
+    res.json({ message: 'Usuário deletado com sucesso' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
+}
+

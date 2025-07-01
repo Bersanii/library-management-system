@@ -21,7 +21,7 @@ const MainLayout = () => {
 
           {isLogged ?
             <Nav>
-              <NavDropdown className="text-white" title={user.nome}>
+              <NavDropdown className="user-name" title={user.nome}>
                 {user.tipo == 'Adm' ? <NavDropdown.Item as={Link as any} to='/dashboard-adm'>Painel de controle</NavDropdown.Item> : <></>}
                 {user.tipo == 'Alu' ? <NavDropdown.Item as={Link as any} to='/dashboard-alu'>Empréstimos</NavDropdown.Item> : <></>}
                 {user.tipo == 'Ser' ? <NavDropdown.Item as={Link as any} to='/dashboard-ser'>Gerenciamento</NavDropdown.Item> : <></>}

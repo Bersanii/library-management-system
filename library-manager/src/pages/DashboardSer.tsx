@@ -51,6 +51,25 @@ const DashboardSer = () => {
     }
   }
 
+   async function handleDeleteObra(obra: any) {
+      const confirm = window.confirm(`Deseja realmente excluir a obra ${obra.titulo}?`);
+      if (!confirm) return;
+  
+      try {
+        const response = await fetch(`${API_URL}/deleteObra/${obra.isbn}`, {
+          method: 'POST',
+        });
+  
+        if (!response.ok) throw new Error();
+  
+        toast.success('Obra excluída com sucesso.');
+        fetchObras(); // Atualiza a lista
+      } catch (err) {
+        console.error(err);
+        toast.error('Erro ao excluir obra.');
+      }
+    }
+
   function clearForm(){
     setIsbn('');
     setTitulo('');
@@ -129,7 +148,7 @@ const DashboardSer = () => {
                       <Button as={Link as any} to={{ pathname: `/obra/${obra.isbn}` }} variant="link" className="text-primary text-decoration-none p-0">
                         <i className="bi bi-box-arrow-up-right me-2" />
                       </Button>
-                      <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0">
+                      <Button onClick={() => handleDeleteObra(obra)} variant="link" className="text-primary text-decoration-none p-0">
                         <i className="bi bi-x" />
                       </Button>
                     </td>

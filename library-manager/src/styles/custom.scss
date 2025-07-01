@@ -19,10 +19,15 @@ $theme-colors: (
 // @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 .background {
-    /* background-image: url('../assets/background.jpg');
+  /* background-image: url('../assets/background.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover; */
-    background: #FF4022;
-    background: linear-gradient(45deg,rgba(255, 64, 34, 1) 0%, rgba(255, 141, 34, 1) 100%);
+  background: #FF4022;
+  background: linear-gradient(45deg, rgba(255, 64, 34, 1) 0%, rgba(255, 141, 34, 1) 100%);
+}
+
+.user-name > a {
+  color: #f8f9fa !important;
+  font-weight: bold;
 }

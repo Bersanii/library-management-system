@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Container, Table, Spinner } from "react-bootstrap";
+import { Container, Table, Spinner, Button } from "react-bootstrap";
 import { format } from "date-fns";
 import { useAuth } from "../context/auth";
 import { toast, ToastContainer } from 'react-toastify';
+import { Link } from "react-router";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -34,7 +35,11 @@ const DashboardAlu = () => {
   return (
     <>
       <Container className="mt-4">
-        <h2 className="mb-4">Meus Empréstimos</h2>
+        <h2>Meus Empréstimos</h2>
+        <hr />
+
+        <p>Visualize abaixo os status dos seus empréstimos atualizados.</p>
+
         {loading ? (
           <div className="text-center">
             <Spinner animation="border" />
@@ -43,10 +48,10 @@ const DashboardAlu = () => {
           <Table bordered hover>
             <thead>
               <tr>
-                <th>ID</th>
+                <th>Código</th>
                 <th>CPF</th>
                 <th>Prazo Devolução</th>
-                <th>Exemplares</th>
+                <th>Exemplares (Tombo)</th>
                 <th>Devolvido?</th>
               </tr>
             </thead>
@@ -71,6 +76,7 @@ const DashboardAlu = () => {
             </tbody>
           </Table>
         )}
+        <Button as={Link as any} to="/" className="background px-4 py-3 rounded-4 text-white w-100">Encontre novos livros. Clique aqui para acessar o catálogo.</Button>
       </Container>
       <ToastContainer position="bottom-center" />
     </>

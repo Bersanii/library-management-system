@@ -31,6 +31,25 @@ const DashboardAdm = () => {
     }
   }
 
+  async function handleDeleteUsuario(cpf: string) {
+    const confirm = window.confirm(`Deseja realmente excluir o usuário de CPF ${cpf}?`);
+    if (!confirm) return;
+
+    try {
+      const response = await fetch(`${API_URL}/deleteUsuario/${cpf}`, {
+        method: 'POST',
+      });
+
+      if (!response.ok) throw new Error();
+
+      toast.success('Usuário excluído com sucesso.');
+      loadData(); // Atualiza a lista
+    } catch (err) {
+      console.error(err);
+      toast.error('Erro ao excluir o usuário.');
+    }
+  }
+
   useEffect(() => {
     loadData();
   }, []);
@@ -58,6 +77,7 @@ const DashboardAdm = () => {
                 <tr>
                   <th>Cpf</th>
                   <th>Nome</th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -66,7 +86,7 @@ const DashboardAdm = () => {
                     <td>{servidor?.cpf}</td>
                     <td>{servidor?.nome}</td>
                     <td style={{alignItems: 'end'}}>
-                      <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0">
+                      <Button variant="link" className="text-primary text-decoration-none p-0" onClick={() => handleDeleteUsuario(servidor.cpf)}>
                         <i className="bi bi-x me-2" />Excluir
                       </Button>
                     </td>
@@ -82,7 +102,7 @@ const DashboardAdm = () => {
                 <tr>
                   <th>Cpf</th>
                   <th>Nome</th>
-                  <th></th>
+                  <th>Ações</th>
                 </tr>
               </thead>
               <tbody>
@@ -91,7 +111,7 @@ const DashboardAdm = () => {
                     <td>{aluno?.cpf}</td>
                     <td>{aluno?.nome}</td>
                     <td style={{alignItems: 'end'}}>
-                      <Button as={Link as any} to="/" variant="link" className="text-primary text-decoration-none p-0">
+                      <Button variant="link" className="text-primary text-decoration-none p-0" onClick={() => handleDeleteUsuario(aluno.cpf)}>
                         <i className="bi bi-x me-2" />Excluir
                       </Button>
                     </td>

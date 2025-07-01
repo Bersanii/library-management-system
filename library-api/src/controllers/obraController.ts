@@ -76,3 +76,26 @@ export async function createObra(_req: Request, res: Response) {
     res.status(500).json({ error: 'Erro ao buscar obra' });
   }
 }
+
+export async function deleteObra(_req: Request, res: Response) {
+  const { isbn } = _req.params;
+
+  try {
+    const obra = await Obra.findByPk(isbn);
+
+    if (!obra) {
+      res.status(404).json({ error: 'Obra não encontrado' });
+      return;
+    }
+
+    // Deleta todos os exemplares relacionados à obra
+    await Exemplar.destroy({ where: { isbn } });
+
+    await Obra.destroy({ where: { isbn } });
+
+    res.json({ message: 'Obra deletada com sucesso' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao deletar obra' });
+  }
+}

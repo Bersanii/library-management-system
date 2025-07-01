@@ -56,7 +56,9 @@ const Devolucao = () => {
   return (
     <>
       <Container className="mt-4">
-        <h2 className="mb-4">Devolução de Empréstimos</h2>
+        <h2>Devolução de Empréstimos</h2>
+        <hr />
+
         <Form.Control
           type="text"
           placeholder="Buscar por CPF..."
