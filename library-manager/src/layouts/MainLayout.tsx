@@ -28,6 +28,8 @@ const MainLayout = () => {
                 {user.tipo == 'Ser' ? <NavDropdown.Item as={Link as any} to='/emprestimo'>Empréstimo</NavDropdown.Item> : <></>}
                 {user.tipo == 'Ser' ? <NavDropdown.Item as={Link as any} to='/devolucao'>Devolução</NavDropdown.Item> : <></>}
                 <NavDropdown.Divider />
+                <NavDropdown.Item as={Link as any} to='/'>Home</NavDropdown.Item>
+                <NavDropdown.Item as={Link as any} to='/perfil'>Perfil</NavDropdown.Item>
                 <NavDropdown.Item onClick={logoutAction}>Sair</NavDropdown.Item>
               </NavDropdown>
             </Nav>

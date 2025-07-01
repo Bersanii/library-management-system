@@ -32,6 +32,11 @@ const Cadastro = () => {
       return;
     }
 
+    if (cpf.length != 11) {
+      toast.error('Cpf inválido.');
+      return;
+    }
+
     if (tipo === 'Alu' && (!ra || !curso)) {
       toast.error('Preencha os dados do aluno.');
       return;

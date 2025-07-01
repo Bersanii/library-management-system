@@ -10,6 +10,7 @@ import Devolucao from "./pages/Devolucao";
 import Home from "./pages/Home";
 import Cadastro from "./pages/Cadastro";
 import Obra from "./pages/Obra";
+import Perfil from "./pages/Perfil";
 import EmptyLayout from "./layouts/EmptyLayout";
 import MainLayout from "./layouts/MainLayout";
 
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
               { path: "dashboard-ser", element: <DashboardSer /> },
               { path: "dashboard-alu", element: <DashboardAlu /> },
               { path: "emprestimo", element: <Emprestimo /> },
-              { path: "devolucao", element: <Devolucao /> }
+              { path: "devolucao", element: <Devolucao /> },
+              { path: "perfil", element: <Perfil /> },
             ]
           }
         ] 

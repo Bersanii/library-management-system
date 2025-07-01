@@ -101,22 +101,22 @@ export async function devolverEmprestimo(_req: Request, res: Response) {
       await exemplar.save();
 
       // Remove a associação do empréstimo
-      await joinModel.destroy({
-        where: {
-          EmprestimoId: emprestimo.id,
-          ExemplarTombo: exemplar.tombo,
-        },
-      });
+      // await joinModel.destroy({
+      //   where: {
+      //     EmprestimoId: emprestimo.id,
+      //     ExemplarTombo: exemplar.tombo,
+      //   },
+      // });
 
       exemplaresDevolvidos.push(tombo);
     }
 
     // Se todos os exemplares foram devolvidos, define a data de devolução
-    const exemplaresRestantes = await emprestimo.getExemplars();
-    if (exemplaresRestantes.length === 0 && !emprestimo.dataHoraDevolucao) {
+    // const exemplaresRestantes = await emprestimo.getExemplars();
+    // if (exemplaresRestantes.length === 0 && !emprestimo.dataHoraDevolucao) {
       emprestimo.dataHoraDevolucao = new Date();
       await emprestimo.save();
-    }
+    // }
 
     res.status(200).json({
       message: 'Devolução processada com sucesso.',

@@ -78,7 +78,7 @@ const Devolucao = () => {
                 <th>ID</th>
                 <th>CPF</th>
                 <th>Prazo Devolução</th>
-                <th>Exemplares</th>
+                <th>Exemplares (Tombo)</th>
                 <th>Devolvido?</th>
                 <th>Ação</th>
               </tr>

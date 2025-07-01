@@ -54,6 +54,13 @@ const EmprestimoForm = () => {
     setShowExemplarModal(true);
   };
 
+  const clearForm = () => {
+    setStage(0);
+    setPrazoDevolucao("");
+    setCpf("");
+    setSelectedExemplares([]);
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
@@ -84,7 +91,8 @@ const EmprestimoForm = () => {
         throw new Error(errorData.message || "Erro ao registrar empréstimo");
       }
 
-      navigate("/"); // Redirect to home or loan list after successful submission
+      toast.success("Empréstimo registrado");
+      clearForm();
     } catch (err: any) {
       console.error("Failed to register loan:", err);
       toast.error(err.message || "Não foi possível registrar o empréstimo. Tente novamente.");
@@ -119,24 +127,15 @@ const EmprestimoForm = () => {
     setObraSearchKeyword("");
   };
 
-  const handleRemoveExemplar = (exemplarId: number) => {
+  const handleRemoveExemplar = (exemplarTombo: number) => {
     setSelectedExemplares((prev) =>
-      prev.filter((ex) => ex.id !== exemplarId)
+      prev.filter((ex) => ex.tombo !== exemplarTombo)
     );
   };
 
   return (
     <>
       <Container className="mt-3">
-        <Button
-          as={Link as any}
-          to="/"
-          variant="link"
-          className="text-primary text-decoration-none p-0 mb-3"
-        >
-          <i className="bi bi-arrow-left me-2" />
-          Voltar para o catálogo
-        </Button>
 
         <h2>Registrar Novo Empréstimo</h2>
         <hr />
@@ -194,7 +193,7 @@ const EmprestimoForm = () => {
                         <Button
                           variant="link"
                           className="text-danger p-0 text-decoration-none"
-                          onClick={() => handleRemoveExemplar(exemplar.id)}
+                          onClick={() => handleRemoveExemplar(exemplar.tombo)}
                         >
                           <i className="bi bi-x-circle" /> Remover
                         </Button>

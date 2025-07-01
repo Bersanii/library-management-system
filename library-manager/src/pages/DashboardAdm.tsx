@@ -102,7 +102,7 @@ const DashboardAdm = () => {
                 <tr>
                   <th>Cpf</th>
                   <th>Nome</th>
-                  <th>Ações</th>
+                  {/* <th>Ações</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -110,11 +110,11 @@ const DashboardAdm = () => {
                   <tr key={aluno?.cpf}>
                     <td>{aluno?.cpf}</td>
                     <td>{aluno?.nome}</td>
-                    <td style={{alignItems: 'end'}}>
+                    {/* <td style={{alignItems: 'end'}}>
                       <Button variant="link" className="text-primary text-decoration-none p-0" onClick={() => handleDeleteUsuario(aluno.cpf)}>
                         <i className="bi bi-x me-2" />Excluir
                       </Button>
-                    </td>
+                    </td> */}
                   </tr>
                 ))}
               </tbody>
